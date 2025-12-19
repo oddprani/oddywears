@@ -18,6 +18,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCart } from "@/hooks/use-cart";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -25,10 +27,31 @@ const formSchema = z.object({
   shippingAddress: z.string().min(5, { message: "Address must be at least 5 characters." }),
   shippingCity: z.string().min(2, { message: "City must be at least 2 characters." }),
   shippingZip: z.string().min(5, { message: "ZIP code must be at least 5 characters." }),
-  cardName: z.string().min(2, { message: "Name on card is required." }),
-  cardNumber: z.string().length(16, { message: "Card number must be 16 digits." }),
-  cardExpiry: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, { message: "Invalid expiry date (MM/YY)." }),
-  cardCvc: z.string().length(3, { message: "CVC must be 3 digits." }),
+  paymentMethod: z.enum(["card", "upi"]),
+  cardName: z.string().optional(),
+  cardNumber: z.string().optional(),
+  cardExpiry: z.string().optional(),
+  cardCvc: z.string().optional(),
+  upiId: z.string().optional(),
+}).refine(data => {
+    if (data.paymentMethod === 'card') {
+        return !!data.cardName && data.cardName.length >= 2 &&
+               !!data.cardNumber && data.cardNumber.length === 16 &&
+               !!data.cardExpiry && /^(0[1-9]|1[0-2])\/\d{2}$/.test(data.cardExpiry) &&
+               !!data.cardCvc && data.cardCvc.length === 3;
+    }
+    return true;
+}, {
+    message: "Card details are incomplete.",
+    path: ["cardName"], // Show error on one of the card fields
+}).refine(data => {
+    if (data.paymentMethod === 'upi') {
+        return !!data.upiId && /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/.test(data.upiId);
+    }
+    return true;
+}, {
+    message: "Invalid UPI ID format.",
+    path: ["upiId"],
 });
 
 export default function CheckoutPage() {
@@ -45,12 +68,16 @@ export default function CheckoutPage() {
       shippingAddress: "",
       shippingCity: "",
       shippingZip: "",
+      paymentMethod: "card",
       cardName: "",
       cardNumber: "",
       cardExpiry: "",
       cardCvc: "",
+      upiId: "",
     },
   });
+
+  const paymentMethod = form.watch("paymentMethod");
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log("Checkout submitted", values);
@@ -116,35 +143,82 @@ export default function CheckoutPage() {
               <CardHeader>
                 <CardTitle className="font-headline">Payment Details</CardTitle>
               </CardHeader>
-              <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <FormField control={form.control} name="cardName" render={({ field }) => (
-                  <FormItem className="md:col-span-4">
-                    <FormLabel>Name on Card</FormLabel>
-                    <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
-                <FormField control={form.control} name="cardNumber" render={({ field }) => (
-                  <FormItem className="md:col-span-4">
-                    <FormLabel>Card Number</FormLabel>
-                    <FormControl><Input placeholder="•••• •••• •••• ••••" {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
-                <FormField control={form.control} name="cardExpiry" render={({ field }) => (
-                  <FormItem className="md:col-span-2">
-                    <FormLabel>Expiry (MM/YY)</FormLabel>
-                    <FormControl><Input placeholder="MM/YY" {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
-                <FormField control={form.control} name="cardCvc" render={({ field }) => (
-                  <FormItem className="md:col-span-2">
-                    <FormLabel>CVC</FormLabel>
-                    <FormControl><Input placeholder="123" {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+              <CardContent className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="paymentMethod"
+                  render={({ field }) => (
+                    <FormItem className="space-y-3">
+                      <FormLabel>Payment Method</FormLabel>
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          className="flex space-x-4"
+                        >
+                          <FormItem className="flex items-center space-x-2">
+                            <FormControl>
+                              <RadioGroupItem value="card" id="card" />
+                            </FormControl>
+                            <FormLabel htmlFor="card" className="font-normal">Card</FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-2">
+                            <FormControl>
+                              <RadioGroupItem value="upi" id="upi" />
+                            </FormControl>
+                            <FormLabel htmlFor="upi" className="font-normal">UPI</FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                {paymentMethod === 'card' && (
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <FormField control={form.control} name="cardName" render={({ field }) => (
+                      <FormItem className="md:col-span-4">
+                        <FormLabel>Name on Card</FormLabel>
+                        <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="cardNumber" render={({ field }) => (
+                      <FormItem className="md:col-span-4">
+                        <FormLabel>Card Number</FormLabel>
+                        <FormControl><Input placeholder="•••• •••• •••• ••••" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="cardExpiry" render={({ field }) => (
+                      <FormItem className="md:col-span-2">
+                        <FormLabel>Expiry (MM/YY)</FormLabel>
+                        <FormControl><Input placeholder="MM/YY" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="cardCvc" render={({ field }) => (
+                      <FormItem className="md:col-span-2">
+                        <FormLabel>CVC</FormLabel>
+                        <FormControl><Input placeholder="123" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+                )}
+
+                {paymentMethod === 'upi' && (
+                  <div>
+                    <FormField control={form.control} name="upiId" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>UPI ID</FormLabel>
+                        <FormControl><Input placeholder="yourname@bank" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
