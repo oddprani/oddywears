@@ -12,6 +12,7 @@ export default {
       fontFamily: {
         body: ['Montserrat', 'sans-serif'],
         headline: ['UnifrakturCook', 'cursive'],
+        logo: ['UnifrakturCook', 'cursive'],
         code: ['monospace'],
       },
       colors: {
