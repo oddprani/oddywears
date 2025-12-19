@@ -39,7 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </CardHeader>
       <CardContent className="p-4 flex-grow flex flex-col">
-        <CardTitle className="text-lg font-headline leading-tight mb-1">
+        <CardTitle className="text-lg leading-tight mb-1">
           {product.name}
         </CardTitle>
         <p className="text-sm text-muted-foreground">{product.category}</p>

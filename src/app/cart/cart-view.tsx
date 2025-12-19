@@ -28,7 +28,7 @@ export default function CartView() {
     return (
       <div className="text-center py-16">
         <ShoppingBag className="mx-auto h-24 w-24 text-muted-foreground" />
-        <h2 className="mt-6 text-2xl font-headline font-semibold">Your cart is empty</h2>
+        <h2 className="mt-6 text-2xl font-semibold">Your cart is empty</h2>
         <p className="mt-2 text-muted-foreground">Looks like you haven't added anything to your cart yet.</p>
         <Button asChild className="mt-6">
           <Link href="/products">Start Shopping</Link>
@@ -47,7 +47,7 @@ export default function CartView() {
       <div className="md:col-span-1">
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">Order Summary</CardTitle>
+            <CardTitle>Order Summary</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex justify-between">
@@ -83,7 +83,7 @@ function CartItemCard({ item, onUpdateQuantity, onRemove }: { item: CartItem; on
             <Image src={item.product.imageUrl} alt={item.product.name} fill className="object-cover rounded-md" data-ai-hint={item.product.imageHint} />
             </div>
             <div className="flex-grow">
-            <h3 className="font-semibold font-headline">{item.product.name}</h3>
+            <h3 className="font-semibold">{item.product.name}</h3>
             <p className="text-sm text-muted-foreground">${item.product.price.toFixed(2)}</p>
             </div>
             <div className="flex items-center gap-2">

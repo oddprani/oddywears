@@ -15,14 +15,14 @@ export default function OrdersPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-headline font-bold">Your Orders</h1>
+        <h1 className="text-4xl md:text-5xl font-bold">Your Orders</h1>
         <p className="mt-2 text-lg text-muted-foreground">Track your past purchases.</p>
       </div>
 
       {orders.length === 0 ? (
         <div className="text-center py-16">
             <Package className="mx-auto h-24 w-24 text-muted-foreground" />
-            <h2 className="mt-6 text-2xl font-headline font-semibold">No Orders Yet</h2>
+            <h2 className="mt-6 text-2xl font-semibold">No Orders Yet</h2>
             <p className="mt-2 text-muted-foreground">You haven't placed any orders with us.</p>
         </div>
       ) : (
@@ -34,7 +34,7 @@ export default function OrdersPage() {
                 <AccordionTrigger className="px-6 py-4 hover:bg-secondary/50">
                   <div className="flex justify-between items-center w-full pr-4">
                     <div className="text-left">
-                        <p className="font-semibold font-headline">Order #{order.id}</p>
+                        <p className="font-semibold">Order #{order.id}</p>
                         <p className="text-sm text-muted-foreground">Date: {order.date}</p>
                     </div>
                     <div className="text-right">

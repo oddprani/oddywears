@@ -95,14 +95,14 @@ export default function CheckoutPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-headline font-bold">Checkout</h1>
+        <h1 className="text-4xl md:text-5xl font-bold">Checkout</h1>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onCardSubmit)} className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-8">
             <Card>
               <CardHeader>
-                <CardTitle className="font-headline">Shipping Information</CardTitle>
+                <CardTitle>Shipping Information</CardTitle>
               </CardHeader>
               <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField control={form.control} name="email" render={({ field }) => (
@@ -144,7 +144,7 @@ export default function CheckoutPage() {
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle className="font-headline">Payment Details</CardTitle>
+                <CardTitle>Payment Details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <FormField
@@ -240,7 +240,7 @@ export default function CheckoutPage() {
           <div className="md:col-span-1">
             <Card className="sticky top-24">
               <CardHeader>
-                <CardTitle className="font-headline">Your Order</CardTitle>
+                <CardTitle>Your Order</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {state.items.map(item => (

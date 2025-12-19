@@ -40,7 +40,7 @@ export default function Home() {
                     priority={index === 0}
                   />
                   <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-4">
-                    <h1 className="text-4xl md:text-6xl font-headline font-bold text-white leading-tight">
+                    <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
                       {index === 0 ? 'New Arrivals are Here!' : 'Special Offer: 20% Off'}
                     </h1>
                     <p className="mt-4 text-lg md:text-xl text-white/90 max-w-2xl">
@@ -61,7 +61,7 @@ export default function Home() {
 
       <section className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold">Featured Products</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">Featured Products</h2>
           <p className="mt-2 text-lg text-muted-foreground">Hand-picked just for you</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

@@ -21,7 +21,7 @@ export default function ProductsPage({
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Collection</h1>
+        <h1 className="text-4xl md:text-5xl font-bold">Our Collection</h1>
         <p className="mt-2 text-lg text-muted-foreground">Find the t-shirt that expresses you.</p>
       </div>
 
