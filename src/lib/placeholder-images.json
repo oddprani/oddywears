@@ -1,3 +1,70 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "Hero banner for new arrivals",
+      "imageUrl": "https://images.unsplash.com/photo-1657016028615-0157f9e43678?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0c2hpcnQlMjBmYXNoaW9ufGVufDB8fHx8MTc2NjEzNzgzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tshirt fashion"
+    },
+    {
+      "id": "hero-2",
+      "description": "Hero banner for special offers",
+      "imageUrl": "https://images.unsplash.com/photo-1685883785913-7783b947e450?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjbG90aGluZyUyMHNhbGV8ZW58MHx8fHwxNzY2MTUwMzYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clothing sale"
+    },
+    {
+      "id": "car-shirt-1",
+      "description": "Classic JDM Car T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1574462282113-38aa607fec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FyJTIwdHNoaXJ0fGVufDB8fHx8MTc2NjE1MDM2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car tshirt"
+    },
+    {
+      "id": "car-shirt-2",
+      "description": "Supercar Silhouette T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1765785900626-e94975ccd992?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhdXRvbW90aXZlJTIwZGVzaWdufGVufDB8fHx8MTc2NjE1MDM2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "automotive design"
+    },
+    {
+      "id": "car-shirt-3",
+      "description": "Vintage Muscle Car T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1621971231299-d2b69f9b3fec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjbGFzc2ljJTIwY2FyfGVufDB8fHx8MTc2NjA4MDc5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "classic car"
+    },
+    {
+      "id": "anime-shirt-1",
+      "description": "Shonen Hero T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1714537097791-be0ba0473b9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhbmltZSUyMGNoYXJhY3RlcnxlbnwwfHx8fDE3NjYxNDUyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "anime character"
+    },
+    {
+      "id": "anime-shirt-2",
+      "description": "Kawaii Ramen Cat T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1674337441556-bf6902777d0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYW5nYSUyMHN0eWxlfGVufDB8fHx8MTc2NjE1MDM2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "manga style"
+    },
+    {
+      "id": "anime-shirt-3",
+      "description": "Mecha Pilot Academy T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1760657061857-2dc900e0719e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyb2JvdCUyMGFuaW1lfGVufDB8fHx8MTc2NjE1MDM2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "robot anime"
+    },
+    {
+      "id": "music-shirt-1",
+      "description": "Retro Vinyl Record T-Shirt",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1561203490-1df736285fc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxiYW5kJTIwdHNoaXJ0fGVufDB8fHx8MTc2NjE1MDM2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "band tshirt"
+    },
+    {
+      "id": "music-shirt-2",
+      "description": "Rock On Hand Sign T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1568742519063-d52207242898?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxyb2NrJTIwbXVzaWN8ZW58MHx8fHwxNzY2MDY4MjgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rock music"
+    },
+    {
+      "id": "music-shirt-3",
+      "description": "80s Cassette Mixtape T-Shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1764922247430-888aa40fe565?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cmV0cm8lMjBhdWRpb3xlbnwwfHx8fDE3NjYxNTAzNjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "retro audio"
+    }
+  ]
 }
