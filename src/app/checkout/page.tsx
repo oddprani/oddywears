@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import Image from 'next/image';
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
+import { Wallet } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -32,7 +34,6 @@ const formSchema = z.object({
   cardNumber: z.string().optional(),
   cardExpiry: z.string().optional(),
   cardCvc: z.string().optional(),
-  upiId: z.string().optional(),
 }).refine(data => {
     if (data.paymentMethod === 'card') {
         return !!data.cardName && data.cardName.length >= 2 &&
@@ -43,15 +44,7 @@ const formSchema = z.object({
     return true;
 }, {
     message: "Card details are incomplete.",
-    path: ["cardName"], // Show error on one of the card fields
-}).refine(data => {
-    if (data.paymentMethod === 'upi') {
-        return !!data.upiId && /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/.test(data.upiId);
-    }
-    return true;
-}, {
-    message: "Invalid UPI ID format.",
-    path: ["upiId"],
+    path: ["cardName"],
 });
 
 export default function CheckoutPage() {
@@ -73,14 +66,24 @@ export default function CheckoutPage() {
       cardNumber: "",
       cardExpiry: "",
       cardCvc: "",
-      upiId: "",
     },
   });
 
   const paymentMethod = form.watch("paymentMethod");
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("Checkout submitted", values);
+  function onUpiSubmit(appName: string) {
+    const values = form.getValues();
+    console.log(`Checkout submitted with ${appName}`, values);
+    toast({
+        title: "Order Placed!",
+        description: `Thank you for your purchase. Your order paid with ${appName} is being processed.`,
+    });
+    dispatch({ type: 'CLEAR_CART' });
+    router.push('/orders');
+  }
+
+  function onCardSubmit(values: z.infer<typeof formSchema>) {
+    console.log("Checkout submitted with Card", values);
     toast({
         title: "Order Placed!",
         description: "Thank you for your purchase. Your order is being processed.",
@@ -95,7 +98,7 @@ export default function CheckoutPage() {
         <h1 className="text-4xl md:text-5xl font-headline font-bold">Checkout</h1>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="grid md:grid-cols-3 gap-8">
+        <form onSubmit={form.handleSubmit(onCardSubmit)} className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-8">
             <Card>
               <CardHeader>
@@ -209,14 +212,26 @@ export default function CheckoutPage() {
                 )}
 
                 {paymentMethod === 'upi' && (
-                  <div>
-                    <FormField control={form.control} name="upiId" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>UPI ID</FormLabel>
-                        <FormControl><Input placeholder="yourname@bank" {...field} /></FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
+                  <div className="space-y-4">
+                      <p className="text-sm text-muted-foreground">Select your preferred UPI app to complete the payment.</p>
+                      <div className="grid grid-cols-2 gap-4">
+                          <Button type="button" variant="outline" className="h-14" onClick={() => onUpiSubmit('Google Pay')}>
+                            <Image src="https://picsum.photos/seed/gpay/50/50" alt="Google Pay" width={24} height={24} className="mr-2 rounded-full" />
+                            Google Pay
+                          </Button>
+                          <Button type="button" variant="outline" className="h-14" onClick={() => onUpiSubmit('Paytm')}>
+                            <Image src="https://picsum.photos/seed/paytm/50/50" alt="Paytm" width={24} height={24} className="mr-2" />
+                            Paytm
+                          </Button>
+                          <Button type="button" variant="outline" className="h-14" onClick={() => onUpiSubmit('PhonePe')}>
+                             <Image src="https://picsum.photos/seed/phonepe/50/50" alt="PhonePe" width={24} height={24} className="mr-2" />
+                            PhonePe
+                          </Button>
+                          <Button type="button" variant="outline" className="h-14" onClick={() => onUpiSubmit('Other UPI App')}>
+                            <Wallet className="mr-2 h-6 w-6"/>
+                            Other UPI App
+                          </Button>
+                      </div>
                   </div>
                 )}
               </CardContent>
@@ -240,7 +255,7 @@ export default function CheckoutPage() {
                 </div>
               </CardContent>
               <CardContent>
-                 <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" disabled={state.items.length === 0}>
+                 <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" disabled={state.items.length === 0 || paymentMethod === 'upi'}>
                     Place Order
                 </Button>
               </CardContent>
