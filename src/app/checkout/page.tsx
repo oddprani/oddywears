@@ -70,7 +70,7 @@ export default function CheckoutPage() {
         const { orderId, amount } = await res.json();
         
         const options = {
-            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
             amount: amount,
             currency: "INR",
             name: "OddyWears",
@@ -187,17 +187,17 @@ export default function CheckoutPage() {
                   {state.items.length > 0 ? state.items.map(item => (
                     <div key={item.product.id} className="flex justify-between items-center text-sm">
                       <span className="truncate pr-2">{item.product.name} x {item.quantity}</span>
-                      <span className="font-medium">${(item.product.price * item.quantity).toFixed(2)}</span>
+                      <span className="font-medium">₹{(item.product.price * item.quantity).toFixed(2)}</span>
                     </div>
                   )) : <p className="text-sm text-muted-foreground">Your cart is empty.</p>}
                   <div className="flex justify-between font-bold text-lg pt-4 border-t">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>₹{total.toFixed(2)}</span>
                   </div>
                 </CardContent>
                 <CardContent>
                   <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" disabled={state.items.length === 0}>
-                      Pay ${total.toFixed(2)}
+                      Pay ₹{total.toFixed(2)}
                   </Button>
                 </CardContent>
               </Card>

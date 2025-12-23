@@ -45,7 +45,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="text-sm text-muted-foreground">{product.category}</p>
         <div className="flex-grow" />
         <p className="text-xl font-semibold mt-4">
-          ${product.price.toFixed(2)}
+          ₹{product.price.toFixed(2)}
         </p>
       </CardContent>
       <CardFooter className="p-4 pt-0">

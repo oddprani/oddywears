@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 // Initialize Razorpay instance
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID!,
+  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
   key_secret: process.env.RAZORPAY_KEY_SECRET!,
 });
 
@@ -24,9 +24,7 @@ export async function POST(req: NextRequest) {
   const { amount } = parsedBody.data;
 
   // Razorpay expects the amount in the smallest currency unit (e.g., paise for INR)
-  // We'll assume the amount from the client is in the main unit (e.g., rupees)
-  // And also that the price is in USD, so we convert to INR first. (1 USD ~ 83 INR)
-  const amountInPaise = Math.round(amount * 83 * 100); 
+  const amountInPaise = Math.round(amount * 100); 
 
   const options = {
     amount: amountInPaise,

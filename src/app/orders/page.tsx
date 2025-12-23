@@ -38,7 +38,7 @@ export default function OrdersPage() {
                         <p className="text-sm text-muted-foreground">Date: {order.date}</p>
                     </div>
                     <div className="text-right">
-                        <p className="font-semibold">${order.total.toFixed(2)}</p>
+                        <p className="font-semibold">₹{order.total.toFixed(2)}</p>
                         <Badge variant={order.status === 'Delivered' ? 'default' : order.status === 'Shipped' ? 'secondary' : 'destructive'} 
                                className={cn(
                                    {'bg-green-500 text-white': order.status === 'Delivered'},
@@ -60,7 +60,7 @@ export default function OrdersPage() {
                           <p className="font-semibold">{product.name}</p>
                           <p className="text-sm text-muted-foreground">Quantity: {quantity}</p>
                         </div>
-                        <p className="font-medium">${(product.price * quantity).toFixed(2)}</p>
+                        <p className="font-medium">₹{(product.price * quantity).toFixed(2)}</p>
                       </div>
                     ))}
                   </div>
