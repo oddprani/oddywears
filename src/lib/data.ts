@@ -5,9 +5,11 @@ export type Product = {
   name: string;
   description: string;
   price: number;
+  originalPrice?: number;
   imageUrl: string;
   imageHint: string;
   category: 'Cars' | 'Anime' | 'Music';
+  color?: 'BLACK' | 'WHITE';
 };
 
 const findImage = (id: string) => {
@@ -20,83 +22,91 @@ const findImage = (id: string) => {
 
 export const products: Product[] = [
   {
-    id: '1',
-    name: 'Classic JDM Car T-Shirt',
-    description: 'A tribute to the golden age of Japanese Domestic Market cars. Made from 100% premium cotton for a soft and comfortable fit.',
-    price: 24.99,
-    ...findImage('car-shirt-1'),
+    id: 'porsche-black-1',
+    name: 'Porshe oversized t-shirt BLACK',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-black'),
     category: 'Cars',
+    color: 'BLACK'
   },
   {
-    id: '2',
-    name: 'Supercar Silhouette T-Shirt',
-    description: 'Features a sleek and minimalist silhouette of a modern supercar. Perfect for fans of high-performance engineering.',
-    price: 26.99,
-    ...findImage('car-shirt-2'),
+    id: 'porsche-white-1',
+    name: 'Porshe oversized t-shirt WHITE',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-white'),
     category: 'Cars',
+    color: 'WHITE'
   },
   {
-    id: '3',
-    name: 'Vintage Muscle Car T-Shirt',
-    description: 'Show your love for classic American muscle with this vintage-style tee. Features a distressed print for a retro look.',
-    price: 25.99,
-    ...findImage('car-shirt-3'),
+    id: 'porsche-black-2',
+    name: 'Porshe oversized t-shirt BLACK',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-black'),
     category: 'Cars',
+    color: 'BLACK'
   },
   {
-    id: '4',
-    name: 'Shonen Hero T-Shirt',
-    description: 'Unleash your inner hero with this dynamic tee inspired by classic shonen anime. Vibrant colors and an action-packed design.',
-    price: 24.99,
-    ...findImage('anime-shirt-1'),
-    category: 'Anime',
+    id: 'porsche-white-2',
+    name: 'Porshe oversized t-shirt WHITE',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-white'),
+    category: 'Cars',
+    color: 'WHITE'
   },
   {
-    id: '5',
-    name: 'Kawaii Ramen Cat T-Shirt',
-    description: 'An adorable and quirky design featuring a cat enjoying a bowl of ramen. A must-have for lovers of kawaii culture and good food.',
-    price: 22.99,
-    ...findImage('anime-shirt-2'),
-    category: 'Anime',
+    id: 'porsche-black-3',
+    name: 'Porshe oversized t-shirt BLACK',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-black'),
+    category: 'Cars',
+    color: 'BLACK'
   },
   {
-    id: '6',
-    name: 'Mecha Pilot Academy T-Shirt',
-    description: 'Join the ranks of elite pilots with this tee from the "Mecha Pilot Academy". Features a cool, futuristic emblem.',
-    price: 25.99,
-    ...findImage('anime-shirt-3'),
-    category: 'Anime',
+    id: 'porsche-white-3',
+    name: 'Porshe oversized t-shirt WHITE',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-white'),
+    category: 'Cars',
+    color: 'WHITE'
   },
   {
-    id: '7',
-    name: 'Retro Vinyl Record T-Shirt',
-    description: 'For the audiophiles and music lovers, this tee features a classic vinyl record design. Spin your style.',
-    price: 23.99,
-    ...findImage('music-shirt-1'),
-    category: 'Music',
+    id: 'porsche-black-4',
+    name: 'Porshe oversized t-shirt BLACK',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-black'),
+    category: 'Cars',
+    color: 'BLACK'
   },
   {
-    id: '8',
-    name: 'Rock On Hand Sign T-Shirt',
-    description: 'The universal symbol of rock and roll. A simple yet powerful statement for any music fan. Made from soft, breathable cotton.',
-    price: 21.99,
-    ...findImage('music-shirt-2'),
-    category: 'Music',
-  },
-    {
-    id: '9',
-    name: '80s Cassette Mixtape T-Shirt',
-    description: 'A nostalgic throwback to the era of mixtapes. This colorful design is perfect for those who appreciate the classics.',
-    price: 23.99,
-    ...findImage('music-shirt-3'),
-    category: 'Music',
+    id: 'porsche-white-4',
+    name: 'Porshe oversized t-shirt WHITE',
+    description: 'A tribute to the iconic Porsche 911 GT3 RS. Made from 100% premium cotton for a soft and comfortable fit.',
+    price: 799,
+    originalPrice: 1500,
+    ...findImage('porsche-white'),
+    category: 'Cars',
+    color: 'WHITE'
   },
 ];
 
 export const categories = [
-  { name: 'Cars', href: '/products?category=Cars' },
-  { name: 'Anime', href: '/products?category=Anime' },
-  { name: 'Music', href: '/products?category=Music' },
+  { name: 'ANIME', href: '/products?category=Anime' },
+  { name: 'MUSIC', href: '/products?category=Music' },
+  { name: 'CARS', href: '/products?category=Cars' },
 ];
 
 export type Order = {
@@ -110,36 +120,4 @@ export type Order = {
     }[];
 };
 
-export const orders: Order[] = [
-    {
-        id: 'ORD-001',
-        date: '2023-10-26',
-        status: 'Delivered',
-        total: 51.98,
-        items: [
-            { product: products[0], quantity: 1 },
-            { product: products[3], quantity: 1 },
-        ],
-    },
-    {
-        id: 'ORD-002',
-        date: '2023-11-15',
-        status: 'Shipped',
-        total: 45.98,
-        items: [
-            { product: products[4], quantity: 1 },
-            { product: products[7], quantity: 1 },
-        ],
-    },
-        {
-        id: 'ORD-003',
-        date: '2023-12-01',
-        status: 'Pending',
-        total: 77.97,
-        items: [
-            { product: products[2], quantity: 1 },
-            { product: products[5], quantity: 1 },
-            { product: products[8], quantity: 1 },
-        ],
-    },
-];
+export const orders: Order[] = [];

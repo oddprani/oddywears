@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -11,15 +10,15 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { ProductCard } from '@/components/product-card';
-import { products } from '@/lib/data';
+import { products, categories } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
   const heroBanners = PlaceHolderImages.filter((img) => img.id.startsWith('hero'));
-  const featuredProducts = products.slice(0, 4);
+  const featuredProducts = products.slice(0, 8);
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-20">
       <section className="w-full">
         <Carousel
           className="w-full"
@@ -30,39 +29,48 @@ export default function Home() {
           <CarouselContent>
             {heroBanners.map((banner, index) => (
               <CarouselItem key={index}>
-                <div className="relative h-[300px] md:h-[500px] w-full">
-                  <Image
-                    src={banner.imageUrl}
-                    alt={banner.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={banner.imageHint}
-                    priority={index === 0}
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-4">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                      {index === 0 ? 'New Arrivals are Here!' : 'Special Offer: 20% Off'}
-                    </h1>
-                    <p className="mt-4 text-lg md:text-xl text-white/90 max-w-2xl">
-                      {index === 0 ? 'Check out our latest collection of unique t-shirts.' : 'Get your favorite designs at an unbeatable price for a limited time.'}
-                    </p>
-                    <Button asChild size="lg" className="mt-8 bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
-                      <Link href="/products">Shop Now</Link>
-                    </Button>
+                <div className="relative h-[300px] md:h-[500px] w-full bg-white text-black">
+                  <div className="container mx-auto h-full flex items-center">
+                    <div className="w-1/2 flex flex-col justify-center">
+                      <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">
+                        Limited
+                        <br />
+                        Offer
+                      </h1>
+                      <p className="mt-4 text-xl">
+                        Buy 2 for <span className="font-bold text-2xl">Rs: 999</span>
+                      </p>
+                    </div>
+                    <div className="w-1/2 h-full relative">
+                       <Image
+                        src={banner.imageUrl}
+                        alt={banner.description}
+                        fill
+                        className="object-contain"
+                        data-ai-hint={banner.imageHint}
+                        priority={index === 0}
+                      />
+                    </div>
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:inline-flex" />
-          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:inline-flex" />
+           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            <CarouselPrevious className="static -translate-y-0" />
+            <div className="flex gap-2">
+              {heroBanners.map((_, i) => (
+                <span key={i} className="h-2 w-2 rounded-full bg-muted-foreground/50 data-[active='true']:bg-foreground" />
+              ))}
+            </div>
+            <CarouselNext className="static -translate-y-0" />
+           </div>
         </Carousel>
       </section>
 
       <section className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold">Featured Products</h2>
-          <p className="mt-2 text-lg text-muted-foreground">Hand-picked just for you</p>
+          <h2 className="text-2xl font-light italic">our collections</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {featuredProducts.map((product) => (
@@ -70,9 +78,24 @@ export default function Home() {
           ))}
         </div>
         <div className="text-center mt-12">
-            <Button asChild size="lg" variant="outline">
-                <Link href="/products">View All Products</Link>
+            <Button asChild size="lg" variant="outline" className="border-2 border-primary rounded-none hover:bg-primary hover:text-primary-foreground">
+                <Link href="/products">View more</Link>
             </Button>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl font-light italic">Shop By FANDOM</h2>
+        </div>
+        <div className="flex justify-center items-center gap-8 md:gap-16">
+          {categories.map((category) => (
+            <Link key={category.name} href={category.href} className="flex flex-col items-center gap-4 group">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary transition-colors">
+                <span className="text-lg font-semibold group-hover:text-primary-foreground">{category.name.toUpperCase()}</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </div>

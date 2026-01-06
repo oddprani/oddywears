@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useCart } from '@/hooks/use-cart';
 import type { Product } from '@/lib/data';
 import { useToast } from "@/hooks/use-toast";
-import { ShoppingCart } from 'lucide-react';
+import { Heart, Send } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 type ProductCardProps = {
   product: Product;
@@ -25,34 +25,38 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full transition-shadow duration-300 hover:shadow-lg">
-      <CardHeader className="p-0">
-        <div className="aspect-square relative">
-          <Image
-            src={product.imageUrl}
-            alt={product.name}
-            fill
-            className="object-cover"
-            data-ai-hint={product.imageHint}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          />
-        </div>
-      </CardHeader>
-      <CardContent className="p-4 flex-grow flex flex-col">
-        <CardTitle className="text-lg leading-tight mb-1">
-          {product.name}
-        </CardTitle>
-        <p className="text-sm text-muted-foreground">{product.category}</p>
-        <div className="flex-grow" />
-        <p className="text-xl font-semibold mt-4">
-          ₹{product.price.toFixed(2)}
-        </p>
-      </CardContent>
-      <CardFooter className="p-4 pt-0">
-        <Button onClick={handleAddToCart} className="w-full">
-          <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+    <div className="group relative">
+      <div className="aspect-[3/4] w-full overflow-hidden bg-secondary">
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          data-ai-hint={product.imageHint}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        />
+        <Button size="icon" variant="ghost" className="absolute top-2 right-2 rounded-full h-8 w-8 bg-background/50 hover:bg-background/80">
+          <Heart className="h-4 w-4" />
         </Button>
-      </CardFooter>
-    </Card>
+      </div>
+      <div className="mt-2">
+        <div className="flex justify-between items-center">
+            <h3 className="text-sm font-medium uppercase">{product.name}</h3>
+            <Button size="icon" variant="ghost" onClick={handleAddToCart} className="h-8 w-8">
+              <Send className="h-4 w-4 -rotate-45" />
+            </Button>
+        </div>
+        <div className="flex items-center gap-2">
+            <p className="text-base font-medium">
+            ₹{product.price.toFixed(0)}
+            </p>
+            {product.originalPrice && (
+                <p className="text-sm text-muted-foreground line-through">
+                ₹{product.originalPrice.toFixed(0)}
+                </p>
+            )}
+        </div>
+      </div>
+    </div>
   );
 }

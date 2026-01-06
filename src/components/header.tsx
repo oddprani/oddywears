@@ -5,7 +5,6 @@ import {
   Menu,
   ShoppingCart,
   User,
-  Shirt,
 } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { Button } from '@/components/ui/button';
@@ -19,8 +18,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Logo } from '@/components/logo';
 import { categories } from '@/lib/data';
+import Image from 'next/image';
 
 export function Header() {
   const { state } = useCart();
@@ -32,46 +31,21 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Logo className="hidden md:flex" />
-
-        <nav className="hidden md:flex gap-6 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="text-foreground/60 transition-colors hover:text-foreground">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="md:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left">
-              <div className="flex flex-col gap-6 p-6">
-                <Logo />
-                <nav className="flex flex-col gap-4">
-                  {navLinks.map((link) => (
-                    <Link key={link.href} href={link.href} className="text-lg font-medium text-foreground/80 hover:text-foreground">
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-
-        <div className="md:hidden flex-1 flex justify-center">
-            <Logo />
-        </div>
-
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <div className="flex items-center gap-4">
+            <Link href="/" className="flex items-center justify-center h-8 w-8 rounded-full border border-primary">
+                <Image src="/main black logo.png" alt="O" width={16} height={16} className="h-4 w-4" />
+            </Link>
+        </div>
+        
+        <div className="hidden md:flex">
+             <span className="text-2xl font-bold text-foreground font-logo">
+                OddyWears
+            </span>
+        </div>
+
+        <div className="flex items-center gap-2">
           <Link href="/cart" className="relative">
             <Button variant="ghost" size="icon">
               <ShoppingCart className="h-6 w-6" />
@@ -99,6 +73,30 @@ export function Header() {
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+           <div className="md:hidden">
+            <Sheet>
+                <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Toggle navigation menu</span>
+                </Button>
+                </SheetTrigger>
+                <SheetContent side="left">
+                <div className="flex flex-col gap-6 p-6">
+                    <span className="text-2xl font-bold text-foreground font-logo">
+                        OddyWears
+                    </span>
+                    <nav className="flex flex-col gap-4">
+                    {navLinks.map((link) => (
+                        <Link key={link.href} href={link.href} className="text-lg font-medium text-foreground/80 hover:text-foreground">
+                        {link.label}
+                        </Link>
+                    ))}
+                    </nav>
+                </div>
+                </SheetContent>
+            </Sheet>
+            </div>
         </div>
       </div>
     </header>

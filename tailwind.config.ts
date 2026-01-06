@@ -10,8 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Montserrat', 'sans-serif'],
-        headline: ['UnifrakturCook', 'cursive'],
+        body: ['Inter', 'sans-serif'],
         logo: ['UnifrakturCook', 'cursive'],
         code: ['monospace'],
       },
