@@ -19,52 +19,10 @@
       "imageHint": "band logo"
     },
     {
-      "id": "porsche-black",
-      "description": "Black Porsche oversized t-shirt",
-      "imageUrl": "/porsche-black.png",
-      "imageHint": "car tshirt"
-    },
-    {
-      "id": "porsche-white",
-      "description": "White Porsche oversized t-shirt",
-      "imageUrl": "/porsche-white.png",
-      "imageHint": "car tshirt"
-    },
-    {
-      "id": "anime-1",
-      "description": "Goku Super Saiyan Blue T-shirt",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1572491259205-506c425b45c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YW5pbWUlMjBoZXJvfGVufDB8fHx8MTc2NzgwNjM1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "anime hero"
-    },
-    {
-      "id": "anime-2",
-      "description": "Naruto Sage Mode T-shirt",
-      "imageUrl": "https://images.unsplash.com/photo-1643215320087-ce7ce78dc4bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxuaW5qYSUyMGFuaW1lfGVufDB8fHx8MTc2Nzg1MTkzMHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ninja anime"
-    },
-    {
-      "id": "music-1",
-      "description": "Daft Punk retro t-shirt",
-      "imageUrl": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaiUyMG11c2ljfGVufDB8fHx8MTc2Nzg1MTkzMHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "dj music"
-    },
-    {
-      "id": "music-2",
-      "description": "Red Hot Chili Peppers band t-shirt",
-      "imageUrl": "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyb2NrJTIwYmFuZHxlbnwwfHx8fDE3Njc3ODU2MzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "rock band"
-    },
-    {
-      "id": "car-1",
-      "description": "BMW M-series t-shirt",
-      "imageUrl": "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzcG9ydHMlMjBjYXJ8ZW58MHx8fHwxNzY3ODA3MTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "sports car"
-    },
-    {
-      "id": "car-2",
-      "description": "Lamborghini Aventador t-shirt",
-      "imageUrl": "https://images.unsplash.com/photo-1692829695763-d37a7796a7ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3VwZXJjYXIlMjB0c2hpcnR8ZW58MHx8fHwxNzY3ODUxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "supercar tshirt"
+      "id": "placeholder",
+      "description": "Placeholder product image",
+      "imageUrl": "https://images.unsplash.com/photo-1748801583998-c693323e6305?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9kdWN0JTIwcGxhY2Vob2xkZXJ8ZW58MHx8fHwxNzY3ODQ1NTQ4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "product placeholder"
     }
   ]
 }
