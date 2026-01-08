@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -14,11 +15,9 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { ProductCard } from '@/components/product-card';
-import { products, categories } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { products, categories, banners } from '@/lib/data';
 
 export default function Home() {
-  const heroBanners = PlaceHolderImages.filter((img) => img.id.startsWith('hero'));
   const featuredProducts = products.slice(0, 8);
 
   const plugin = React.useRef(
@@ -38,27 +37,27 @@ export default function Home() {
           onMouseLeave={plugin.current.reset}
         >
           <CarouselContent>
-            {heroBanners.map((banner, index) => (
+            {banners.map((banner, index) => (
               <CarouselItem key={index}>
                 <div className="relative h-[300px] md:h-[500px] w-full bg-primary text-primary-foreground">
                   <div className="container mx-auto h-full flex items-center">
-                    <div className="w-1/2 flex flex-col justify-center">
+                    <div className="w-1/2 flex flex-col justify-center text-background">
                       <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">
-                        Limited
+                        {banner.titleLine1}
                         <br />
-                        Offer
+                        {banner.titleLine2}
                       </h1>
                       <p className="mt-4 text-xl">
-                        Buy 2 for <span className="font-bold text-2xl">₹999</span>
+                        {banner.subtitle} <span className="font-bold text-2xl">{banner.price}</span>
                       </p>
                     </div>
                     <div className="w-1/2 h-full relative">
                        <Image
-                        src={banner.imageUrl}
-                        alt={banner.description}
+                        src={banner.image.url}
+                        alt={banner.image.hint}
                         fill
                         className="object-contain"
-                        data-ai-hint={banner.imageHint}
+                        data-ai-hint={banner.image.hint}
                         priority={index === 0}
                       />
                     </div>
@@ -68,13 +67,13 @@ export default function Home() {
             ))}
           </CarouselContent>
            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-            <CarouselPrevious className="static -translate-y-0 text-primary-foreground" />
+            <CarouselPrevious className="static -translate-y-0 text-background" />
             <div className="flex gap-2">
-              {heroBanners.map((_, i) => (
-                <span key={i} className="h-2 w-2 rounded-full bg-muted-foreground/50 data-[active='true']:bg-primary-foreground" />
+              {banners.map((_, i) => (
+                <span key={i} className="h-2 w-2 rounded-full bg-muted-foreground/50 data-[active='true']:bg-background" />
               ))}
             </div>
-            <CarouselNext className="static -translate-y-0 text-primary-foreground" />
+            <CarouselNext className="static -translate-y-0 text-background" />
            </div>
         </Carousel>
       </section>
