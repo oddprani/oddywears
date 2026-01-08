@@ -40,7 +40,7 @@ export default function Home() {
           <CarouselContent>
             {heroBanners.map((banner, index) => (
               <CarouselItem key={index}>
-                <div className="relative h-[300px] md:h-[500px] w-full bg-secondary/20">
+                <div className="relative h-[300px] md:h-[500px] w-full bg-primary text-primary-foreground">
                   <div className="container mx-auto h-full flex items-center">
                     <div className="w-1/2 flex flex-col justify-center">
                       <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">
@@ -68,13 +68,13 @@ export default function Home() {
             ))}
           </CarouselContent>
            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-            <CarouselPrevious className="static -translate-y-0" />
+            <CarouselPrevious className="static -translate-y-0 text-primary-foreground" />
             <div className="flex gap-2">
               {heroBanners.map((_, i) => (
-                <span key={i} className="h-2 w-2 rounded-full bg-muted-foreground/50 data-[active='true']:bg-foreground" />
+                <span key={i} className="h-2 w-2 rounded-full bg-muted-foreground/50 data-[active='true']:bg-primary-foreground" />
               ))}
             </div>
-            <CarouselNext className="static -translate-y-0" />
+            <CarouselNext className="static -translate-y-0 text-primary-foreground" />
            </div>
         </Carousel>
       </section>
