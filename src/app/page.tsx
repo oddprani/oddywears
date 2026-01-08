@@ -1,5 +1,9 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
+import Autoplay from "embla-carousel-autoplay";
 
 import { Button } from '@/components/ui/button';
 import {
@@ -17,6 +21,10 @@ export default function Home() {
   const heroBanners = PlaceHolderImages.filter((img) => img.id.startsWith('hero'));
   const featuredProducts = products.slice(0, 8);
 
+  const plugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  )
+
   return (
     <div className="space-y-20">
       <section className="w-full">
@@ -25,11 +33,14 @@ export default function Home() {
           opts={{
             loop: true,
           }}
+          plugins={[plugin.current]}
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
         >
           <CarouselContent>
             {heroBanners.map((banner, index) => (
               <CarouselItem key={index}>
-                <div className="relative h-[300px] md:h-[500px] w-full bg-white text-black">
+                <div className="relative h-[300px] md:h-[500px] w-full bg-secondary/20">
                   <div className="container mx-auto h-full flex items-center">
                     <div className="w-1/2 flex flex-col justify-center">
                       <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">
@@ -38,7 +49,7 @@ export default function Home() {
                         Offer
                       </h1>
                       <p className="mt-4 text-xl">
-                        Buy 2 for <span className="font-bold text-2xl">Rs: 999</span>
+                        Buy 2 for <span className="font-bold text-2xl">₹999</span>
                       </p>
                     </div>
                     <div className="w-1/2 h-full relative">

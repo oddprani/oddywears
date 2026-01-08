@@ -31,11 +31,11 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center justify-center">
-                <Image src="/main white logo.png" alt="O" width={32} height={32} className="h-8 w-8" />
+                <Image src="/main white logo.png" alt="O" width={48} height={48} className="h-12 w-12" />
             </Link>
         </div>
         
