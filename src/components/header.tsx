@@ -20,15 +20,25 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { categories } from '@/lib/data';
 import Image from 'next/image';
+import { useUser } from '@/firebase';
+import { signOut } from 'firebase/auth';
+import { useAuth } from '@/firebase';
+
 
 export function Header() {
   const { state } = useCart();
+  const { user } = useUser();
+  const auth = useAuth();
   const cartItemCount = state.items.reduce((acc, item) => acc + item.quantity, 0);
 
   const navLinks = [
     { href: '/products', label: 'All Products' },
     ...categories.map(category => ({ href: category.href, label: category.name })),
   ];
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
@@ -65,12 +75,21 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/orders">My Orders</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              {user ? (
+                <>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/orders">My Orders</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuItem asChild><Link href="/login">Login</Link></DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/signup">Sign Up</Link></DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
            <div className="md:hidden">
