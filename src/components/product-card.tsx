@@ -40,20 +40,22 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
       <div className="mt-4">
         <div className="flex justify-between items-start">
-            <h3 className="text-sm font-medium uppercase pr-2 text-foreground">{product.name}</h3>
+            <div className="text-foreground">
+                <h3 className="text-sm font-medium uppercase pr-2">{product.name}</h3>
+                <div className="flex items-center gap-2">
+                    <p className="text-base font-medium">
+                    ₹{product.price.toFixed(0)}
+                    </p>
+                    {product.originalPrice && (
+                        <p className="text-sm text-muted-foreground line-through">
+                        ₹{product.originalPrice.toFixed(0)}
+                        </p>
+                    )}
+                </div>
+            </div>
             <Button size="icon" variant="ghost" onClick={handleAddToCart} className="h-8 w-8 flex-shrink-0 text-foreground">
               <Send className="h-4 w-4 -rotate-45" />
             </Button>
-        </div>
-        <div className="flex items-center gap-2">
-            <p className="text-base font-medium text-foreground">
-            ₹{product.price.toFixed(0)}
-            </p>
-            {product.originalPrice && (
-                <p className="text-sm text-muted-foreground line-through">
-                ₹{product.originalPrice.toFixed(0)}
-                </p>
-            )}
         </div>
       </div>
     </div>
