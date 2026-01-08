@@ -35,7 +35,7 @@ export function Header() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center justify-center">
-                <Image src="/porsche-white.png" alt="O" width={64} height={64} className="h-16 w-16" />
+                <Image src="/main white logo.png" alt="OddyWears Logo" width={64} height={64} className="h-16 w-16" />
             </Link>
         </div>
         

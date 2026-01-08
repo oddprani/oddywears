@@ -8,7 +8,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link href="/" className={cn("flex items-center gap-2", className)}>
       <Image 
-        src="/main black logo.png" 
+        src="/main white logo.png" 
         alt="OddyWears Logo" 
         width={32} 
         height={32} 
