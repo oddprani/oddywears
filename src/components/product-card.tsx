@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
 import type { Product } from '@/lib/data';
@@ -16,7 +17,9 @@ export function ProductCard({ product }: ProductCardProps) {
   const { dispatch } = useCart();
   const { toast } = useToast();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
     dispatch({ type: 'ADD_ITEM', payload: product });
     toast({
       title: "Added to cart",
@@ -24,10 +27,19 @@ export function ProductCard({ product }: ProductCardProps) {
     });
   };
 
+  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    toast({
+      title: "Added to wishlist!",
+      description: `${product.name} has been added to your wishlist.`,
+    });
+  }
+
   return (
-    <div className="group relative">
+    <Link href={`/products/${product.id}`} className="group relative block">
       <div className="aspect-[3/4] w-full overflow-hidden bg-secondary">
-        {product.imageUrl && (
+        {product.imageUrl ? (
           <Image
             src={product.imageUrl}
             alt={product.name}
@@ -36,13 +48,15 @@ export function ProductCard({ product }: ProductCardProps) {
             data-ai-hint={product.imageHint}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
+        ) : (
+            <div className="w-full h-full bg-secondary"></div>
         )}
-        <Button size="icon" variant="ghost" className="absolute top-2 right-2 rounded-full h-8 w-8 bg-background/50 hover:bg-background/80 text-foreground">
+        <Button size="icon" variant="ghost" onClick={handleLike} className="absolute top-2 right-2 rounded-full h-8 w-8 bg-background/50 hover:bg-background/80 text-foreground">
           <Heart className="h-4 w-4" />
         </Button>
       </div>
       <div className="mt-4">
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start gap-4">
             <div className="text-foreground">
                 <h3 className="text-sm font-medium uppercase pr-2">{product.name}</h3>
                 <div className="flex items-center gap-2">
@@ -61,6 +75,6 @@ export function ProductCard({ product }: ProductCardProps) {
             </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
