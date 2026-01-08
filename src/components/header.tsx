@@ -50,9 +50,11 @@ export function Header() {
         </div>
         
         <div className="hidden md:flex">
-             <span className="text-2xl font-bold text-foreground font-logo">
+            <Link href="/">
+            <span className="text-2xl font-bold text-foreground font-logo">
                 OddyWears
             </span>
+            </Link>
         </div>
 
         <div className="flex items-center gap-2">
