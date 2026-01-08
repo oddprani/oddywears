@@ -30,7 +30,8 @@ export const products: Product[] = Array.from({ length: 8 }).map((_, i) => ({
   description: 'This is a placeholder product description.',
   price: 999,
   originalPrice: 1500,
-  ...findImage('placeholder'),
+  imageUrl: '',
+  imageHint: '',
   category: i % 3 === 0 ? 'Cars' : i % 3 === 1 ? 'Anime' : 'Music',
 }));
 

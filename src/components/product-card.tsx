@@ -6,6 +6,7 @@ import { useCart } from '@/hooks/use-cart';
 import type { Product } from '@/lib/data';
 import { useToast } from "@/hooks/use-toast";
 import { Heart, Send } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 type ProductCardProps = {
   product: Product;
@@ -26,15 +27,17 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="group relative">
       <div className="aspect-[3/4] w-full overflow-hidden bg-secondary">
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          data-ai-hint={product.imageHint}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-        />
-        <Button size="icon" variant="ghost" className="absolute top-2 right-2 rounded-full h-8 w-8 bg-background/50 hover:bg-background/80">
+        {product.imageUrl && (
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            data-ai-hint={product.imageHint}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
+        )}
+        <Button size="icon" variant="ghost" className="absolute top-2 right-2 rounded-full h-8 w-8 bg-background/50 hover:bg-background/80 text-foreground">
           <Heart className="h-4 w-4" />
         </Button>
       </div>
