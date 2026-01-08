@@ -34,8 +34,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center justify-center h-8 w-8 rounded-full border border-primary">
-                <Image src="/main black logo.png" alt="O" width={16} height={16} className="h-4 w-4" />
+            <Link href="/" className="flex items-center justify-center">
+                <Image src="/main white logo.png" alt="O" width={32} height={32} className="h-8 w-8" />
             </Link>
         </div>
         
