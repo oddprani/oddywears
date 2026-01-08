@@ -54,7 +54,7 @@ export default function OrdersPage() {
                     {order.items.map(({ product, quantity }) => (
                       <div key={product.id} className="flex items-center gap-4">
                         <div className="relative h-16 w-16 flex-shrink-0">
-                            <Image src={product.imageUrl} alt={product.name} fill className="rounded-md object-cover" data-ai-hint={product.imageHint} />
+                            <Image src={product.imageUrls[0].url} alt={product.name} fill className="rounded-md object-cover" data-ai-hint={product.imageUrls[0].hint} />
                         </div>
                         <div className="flex-grow">
                           <p className="font-semibold">{product.name}</p>

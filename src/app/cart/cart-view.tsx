@@ -76,11 +76,12 @@ export default function CartView() {
 }
 
 function CartItemCard({ item, onUpdateQuantity, onRemove }: { item: CartItem; onUpdateQuantity: (id: string, q: number) => void; onRemove: (id: string) => void; }) {
+  const firstImage = item.product.imageUrls?.[0] || { url: '', hint: 'placeholder' };
   return (
     <Card>
         <CardContent className="flex items-center gap-4 p-4">
             <div className="relative h-24 w-24 flex-shrink-0">
-            <Image src={item.product.imageUrl} alt={item.product.name} fill className="object-cover rounded-md" data-ai-hint={item.product.imageHint} />
+            <Image src={firstImage.url} alt={item.product.name} fill className="object-cover rounded-md" data-ai-hint={firstImage.hint} />
             </div>
             <div className="flex-grow">
             <h3 className="font-semibold">{item.product.name}</h3>

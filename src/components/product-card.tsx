@@ -36,16 +36,18 @@ export function ProductCard({ product }: ProductCardProps) {
     });
   }
 
+  const firstImage = product.imageUrls?.[0] || { url: '', hint: 'placeholder' };
+
   return (
     <Link href={`/products/${product.id}`} className="group relative block">
       <div className="aspect-[3/4] w-full overflow-hidden bg-secondary">
-        {product.imageUrl ? (
+        {firstImage.url ? (
           <Image
-            src={product.imageUrl}
+            src={firstImage.url}
             alt={product.name}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
-            data-ai-hint={product.imageHint}
+            data-ai-hint={firstImage.hint}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : (
@@ -55,7 +57,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <Heart className="h-4 w-4" />
         </Button>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 text-foreground">
         <div className="flex justify-between items-start gap-4">
             <div className="text-foreground">
                 <h3 className="text-sm font-medium uppercase pr-2">{product.name}</h3>
