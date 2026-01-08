@@ -6,7 +6,6 @@ import { useCart } from '@/hooks/use-cart';
 import type { Product } from '@/lib/data';
 import { useToast } from "@/hooks/use-toast";
 import { Heart, Send } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 type ProductCardProps = {
   product: Product;
@@ -40,9 +39,9 @@ export function ProductCard({ product }: ProductCardProps) {
         </Button>
       </div>
       <div className="mt-2">
-        <div className="flex justify-between items-center">
-            <h3 className="text-sm font-medium uppercase">{product.name}</h3>
-            <Button size="icon" variant="ghost" onClick={handleAddToCart} className="h-8 w-8">
+        <div className="flex justify-between items-start">
+            <h3 className="text-sm font-medium uppercase pr-2">{product.name}</h3>
+            <Button size="icon" variant="ghost" onClick={handleAddToCart} className="h-8 w-8 flex-shrink-0">
               <Send className="h-4 w-4 -rotate-45" />
             </Button>
         </div>
